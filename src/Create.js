@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
 
@@ -6,6 +7,10 @@ const Create = () => {
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
     const [isPending, setIsPending] = useState(false)
+    const history = useHistory()
+    // const handleNewAuthor = () => {
+
+    // }
 
 
     const handleSubmit = (e) => {
@@ -21,6 +26,8 @@ const Create = () => {
         }).then(() => {
             console.log('new blog added');
             setIsPending(false);
+            // history.go(-1)
+            history.push("/")
         });
     }
 
@@ -48,10 +55,14 @@ const Create = () => {
                  >
                      <option value="mario">mario</option>
                      <option value="yoshi">yoshi</option>
+                     <option value="bob">bob</option>
                  </select>
                  { !isPending && <button>Add blog</button>}
                  { isPending && <button disabled>Adding blog...</button>}
+
             </form>
+
+            {/* <button onClick={handleNewAuthor}>New author</button> */}
         </div>
 
     );
